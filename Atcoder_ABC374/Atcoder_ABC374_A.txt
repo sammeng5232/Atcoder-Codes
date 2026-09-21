@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  string s;
+  cin >> s;
+  int l = s.size();
+  if (l >= 3) {
+    if (s[l - 3] == 's' && s[l - 2] == 'a' && s[l - 1] == 'n') {
+      cout << "Yes\n";
+    } else
+      cout << "No\n";
+  } else
+    cout << "No\n";
+  return 0;
+}

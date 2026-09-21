@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+priority_queue<ll> que;
+ll q, x, y, h, s;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> q;
+  while (q--) {
+    cin >> x;
+    if (x == 1)
+      que.push(-h);
+    else if (x == 2) {
+      cin >> y;
+      h += y;
+    } else {
+      cin >> y;
+      s = 0;
+      while (!que.empty() && que.top() + h >= y) {
+        s++;
+        que.pop();
+      }
+      cout << s << "\n";
+    }
+  }
+  return 0;
+}

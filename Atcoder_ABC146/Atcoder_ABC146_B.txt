@@ -1,0 +1,116 @@
+Atcoder-ABC146-B
+
+# [ABC146B] ROT N
+
+## 题面翻译
+
+输入一个整数 $N$ ，和一个仅包含大写字母的字符串 $S$ 。
+
+将字符串 $S$ 中的每个字母替换为字母顺序中的向后第 $N$ 个字母。
+
+注意：Z后第一个字母记作A。
+
+输出该字符串。
+
+## 题目描述
+
+[problemUrl]: https://atcoder.jp/contests/abc146/tasks/abc146_b
+
+英大文字のみからなる文字列 $ S $ があります。また、整数 $ N $ が与えられます。
+
+$ S $ の各文字を、アルファベット順で $ N $ 個後の文字に置き換えた文字列を出力してください。
+
+ただしアルファベット順で `Z` の $ 1 $ 個後の文字は `A` とみなします。
+
+## 输入格式
+
+入力は以下の形式で標準入力から与えられる。
+
+> $ N $ $ S $
+
+## 输出格式
+
+$ S $ の各文字を、アルファベット順で $ N $ 個後の文字に置き換えた文字列を出力せよ。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+2
+ABCXYZ
+```
+
+### 样例输出 #1
+
+```
+CDEZAB
+```
+
+## 样例 #2
+
+### 样例输入 #2
+
+```
+0
+ABCXYZ
+```
+
+### 样例输出 #2
+
+```
+ABCXYZ
+```
+
+## 样例 #3
+
+### 样例输入 #3
+
+```
+13
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+```
+
+### 样例输出 #3
+
+```
+NOPQRSTUVWXYZABCDEFGHIJKLM
+```
+
+## 提示
+
+### 制約
+
+- $ 0\ \leq\ N\ \leq\ 26 $
+- $ 1\ \leq\ |S|\ \leq\ 10^4 $
+- $ S $ は英大文字のみからなる
+
+### Sample Explanation 1
+
+アルファベット順で `Z` の $ 1 $ 個後の文字は `A` であることに注意してください。
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int l, n;
+string s;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n;
+  cin >> s;
+  l = s.size();
+  for (int i = 0; i < l; i++)
+    cout << ((s[i] < 91 - n) ? (char)(s[i] + n) : (char)(s[i] - 26 + n));
+  return 0;
+}

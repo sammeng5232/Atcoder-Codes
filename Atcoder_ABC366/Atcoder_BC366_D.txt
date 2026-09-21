@@ -1,0 +1,205 @@
+Atcoder-BC366-D
+
+# [ABC366D] Cuboid Sum Query
+
+## 题面翻译
+
+## 题目描述
+
+
+给定一个正整数 $N$ 和满足 $1 \leq x, y, z \leq N$ 的整数组 $(x, y, z)$，对于每个组合都有一个整数 $A_{x, y, z}$。
+
+现在给出 $Q$ 个查询，每个查询要求如下：
+
+对于第 $i$ 个查询 $ (1 \leq i \leq Q) $，给出一组整数 $ (Lx_i, Rx_i, Ly_i, Ry_i, Lz_i, Rz_i) $，其中 $1 \leq Lx_i \leq Rx_i \leq N,\ 1 \leq Ly_i \leq Ry_i \leq N, 1 \leq Lz_i \leq Rz_i \leq N$。要求计算并输出以下求和结果：
+
+$$
+\sum_{x=Lx_i}^{Rx_i}\ \sum_{y=Ly_i}^{Ry_i}\ \sum_{z=Lz_i}^{Rz_i}\ A_{x,y,z}
+$$
+
+## 输入格式
+
+输入以以下形式从标准输入提供。
+
+> $N$ $A_{1,1,1}$ $A_{1,1,2}$ $\ldots$ $A_{1,1,N}$ $A_{1,2,1}$ $A_{1,2,2}$ $\ldots$ $A_{1,2,N}$ $\vdots$ $A_{1,N,1}$ $A_{1,N,2}$ $\ldots$ $A_{1,N,N}$ $A_{2,1,1}$ $A_{2,1,2}$ $\ldots$ $A_{2,1,N}$ $A_{2,2,1}$ $A_{2,2,2}$ $\ldots$ $A_{2,2,N}$ $\vdots$ $A_{2,N,1}$ $A_{2,N,2}$ $\ldots$ $A_{2,N,N}$ $\vdots$ $A_{N,1,1}$ $A_{N,1,2}$ $\ldots$ $A_{N,1,N}$ $A_{N,2,1}$ $A_{N,2,2}$ $\ldots$ $A_{N,2,N}$ $\vdots$ $A_{N,N,1}$ $A_{N,N,2}$ $\ldots$ $A_{N,N,N}$ $Q$ $Lx_1$ $Rx_1$ $Ly_1$ $Ry_1$ $Lz_1$ $Rz_1$ $Lx_2$ $Rx_2$ $Ly_2$ $Ry_2$ $Lz_2$ $Rz_2$ $\vdots$ $Lx_Q$ $Rx_Q$ $Ly_Q$ $Ry_Q$ $Lz_Q$ $Rz_Q$
+
+## 输出格式
+
+输出 $Q$ 行，每行对应一个查询的结果，第 $i$ 行输出第 $i$ 个查询的答案。
+
+## 提示
+
+### 约束条件
+
+- $1 \leq N \leq 100$
+- $1 \leq Q \leq 2 \times 10^{5}$
+- $0 \leq A_{x,y,z} \leq 999\ (1 \leq x, y, z \leq N)$
+- $1 \leq Lx_i \leq Rx_i \leq N$ $ (1 \leq i \leq Q) $
+- $1 \leq Ly_i \leq Ry_i \leq N$ $ (1 \leq i \leq Q) $
+- $1 \leq Lz_i \leq Rz_i \leq N$ $ (1 \leq i \leq Q) $
+- 所有输入均为整数
+
+### 样例解释 1
+
+对于第 $1$ 个查询，需要求和的值为 $A_{1,2,1} + A_{2,2,1} = 3 + 7 = 10$，因此输出 $10$。对于第 $2$ 个查询，需要求和的值为 $A_{2,1,1} + A_{2,1,2} + A_{2,2,1} + A_{2,2,2} = 5 + 6 + 7 + 8 = 26$，因此输出 $26$。
+
+## 题目描述
+
+[problemUrl]: https://atcoder.jp/contests/abc366/tasks/abc366_d
+
+正整数 $ N $ と、 $ 1\ \leq\ x,y,z\ \leq\ N $ を満たす整数の組 $ (x,y,z) $ に対して、整数 $ A_{x,y,z} $ が与えられます。
+
+次の形式の $ Q $ 個のクエリが与えられるので、それぞれに答えてください。
+
+$ i $ 個目 $ (1\ \leq\ i\ \leq\ Q) $ のクエリでは $ 1\ \leq\ Lx_i\ \leq\ Rx_i\ \leq\ N,\ 1\ \leq\ Ly_i\ \leq\ Ry_i\ \leq\ N,1\ \leq\ Lz_i\ \leq\ Rz_i\ \leq\ N $ をすべて満たす整数の組 $ (Lx_i,\ Rx_i,\ Ly_i,\ Ry_i,\ Lz_i,\ Rz_i) $ が与えられるので、
+
+$ \displaystyle{\sum_{x=Lx_i}^{Rx_i}\ \sum_{y=Ly_i}^{Ry_i}\ \sum_{z=Lz_i}^{Rz_i}\ A_{x,y,z}} $
+
+を求めてください。
+
+## 输入格式
+
+入力は以下の形式で標準入力から与えられる。
+
+> $ N $ $ A_{1,1,1} $ $ A_{1,1,2} $ $ \ldots $ $ A_{1,1,N} $ $ A_{1,2,1} $ $ A_{1,2,2} $ $ \ldots $ $ A_{1,2,N} $ $ \vdots $ $ A_{1,N,1} $ $ A_{1,N,2} $ $ \ldots $ $ A_{1,N,N} $ $ A_{2,1,1} $ $ A_{2,1,2} $ $ \ldots $ $ A_{2,1,N} $ $ A_{2,2,1} $ $ A_{2,2,2} $ $ \ldots $ $ A_{2,2,N} $ $ \vdots $ $ A_{2,N,1} $ $ A_{2,N,2} $ $ \ldots $ $ A_{2,N,N} $ $ \vdots $ $ A_{N,1,1} $ $ A_{N,1,2} $ $ \ldots $ $ A_{N,1,N} $ $ A_{N,2,1} $ $ A_{N,2,2} $ $ \ldots $ $ A_{N,2,N} $ $ \vdots $ $ A_{N,N,1} $ $ A_{N,N,2} $ $ \ldots $ $ A_{N,N,N} $ $ Q $ $ Lx_1 $ $ Rx_1 $ $ Ly_1 $ $ Ry_1 $ $ Lz_1 $ $ Rz_1 $ $ Lx_2 $ $ Rx_2 $ $ Ly_2 $ $ Ry_2 $ $ Lz_2 $ $ Rz_2 $ $ \vdots $ $ Lx_Q $ $ Rx_Q $ $ Ly_Q $ $ Ry_Q $ $ Lz_Q $ $ Rz_Q $
+
+## 输出格式
+
+$ Q $ 行出力せよ。 $ i $ 行目には $ i $ 個目のクエリに対する答えを出力せよ。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+2
+1 2
+3 4
+5 6
+7 8
+2
+1 2 2 2 1 1
+2 2 1 2 1 2
+```
+
+### 样例输出 #1
+
+```
+10
+26
+```
+
+## 样例 #2
+
+### 样例输入 #2
+
+```
+3
+733 857 714
+956 208 257
+123 719 648
+840 881 245
+245 112 746
+306 942 694
+58 870 849
+13 208 789
+687 906 783
+8
+3 3 3 3 1 1
+1 3 2 3 3 3
+2 2 2 3 1 1
+1 3 1 1 1 1
+2 3 2 3 2 3
+1 2 1 1 1 2
+3 3 2 2 1 3
+1 2 2 3 2 3
+```
+
+### 样例输出 #2
+
+```
+687
+3917
+551
+1631
+5180
+3311
+1010
+4326
+```
+
+## 提示
+
+### 制約
+
+- $ 1\ \leq\ N\ \leq\ 100 $
+- $ 1\ \leq\ Q\ \leq\ 2\ \times\ 10^{5} $
+- $ 0\ \leq\ A_{x,y,z}\ \leq\ 999\ (1\ \leq\ x,y,z\ \leq\ N) $
+- $ 1\ \leq\ Lx_i\ \leq\ Rx_i\ \leq\ N $ $ (1\ \leq\ i\ \leq\ Q) $
+- $ 1\ \leq\ Ly_i\ \leq\ Ry_i\ \leq\ N $ $ (1\ \leq\ i\ \leq\ Q) $
+- $ 1\ \leq\ Lz_i\ \leq\ Rz_i\ \leq\ N $ $ (1\ \leq\ i\ \leq\ Q) $
+- 入力はすべて整数
+ 
+### Sample Explanation 1
+
+$ 1 $ 個目のクエリについて、求めるべき値は $ A_{1,2,1}+A_{2,2,1}=3+7=10 $ です。よって、$ 10 $ を出力します。 $ 2 $ 個目のクエリについて、求めるべき値は $ A_{2,1,1}+A_{2,1,2}+A_{2,2,1}+A_{2,2,2}=5+6+7+8=26 $ です。よって、$ 26 $ を出力します。
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<double> vi;
+typedef stack<double> si;
+
+int n, q, lx, rx, ly, ry, lz, rz, a[101][101][101], ps[101][101][101];
+
+int main() {
+  cin >> n;
+  for (int i = 1; i <= n; i++)
+    for (int j = 1; j <= n; j++)
+      for (int k = 1; k <= n; k++) {
+        cin >> a[i][j][k];
+        if (i == 1) {
+          if (j == 1) {
+            if (k == 1)
+              ps[i][j][k] = a[i][j][k];
+            else
+              ps[i][j][k] = ps[i][j][k - 1] + a[i][j][k];
+          } else {
+            if (k == 1)
+              ps[i][j][k] = ps[i][j - 1][k] + a[i][j][k];
+            else
+              ps[i][j][k] = ps[i][j - 1][k] + ps[i][j][k - 1] -
+                            ps[i][j - 1][k - 1] + a[i][j][k];
+          }
+        } else {
+          if (j == 1) {
+            if (k == 1)
+              ps[i][j][k] = ps[i - 1][j][k] + a[i][j][k];
+            else
+              ps[i][j][k] = ps[i - 1][j][k] + ps[i][j][k - 1] -
+                            ps[i - 1][j][k - 1] + a[i][j][k];
+          } else {
+            if (k == 1)
+              ps[i][j][k] = ps[i - 1][j][k] + ps[i][j - 1][k] -
+                            ps[i - 1][j - 1][k] + a[i][j][k];
+            else
+              ps[i][j][k] = ps[i - 1][j][k] + ps[i][j - 1][k] +
+                            ps[i][j][k - 1] - ps[i - 1][j - 1][k] -
+                            ps[i - 1][j][k - 1] - ps[i][j - 1][k - 1] +
+                            ps[i - 1][j - 1][k - 1] + a[i][j][k];
+          }
+        }
+      }
+  cin >> q;
+  while (q--) {
+    cin >> lx >> rx >> ly >> ry >> lz >> rz;
+    cout << ps[rx][ry][rz] - ps[lx - 1][ry][rz] - ps[rx][ly - 1][rz] -
+                ps[rx][ry][lz - 1] + ps[lx - 1][ly - 1][rz] +
+                ps[lx - 1][ry][lz - 1] + ps[rx][ly - 1][lz - 1] -
+                ps[lx - 1][ly - 1][lz - 1]
+         << "\n";
+    cout << flush;
+  }
+  return 0;
+}

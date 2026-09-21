@@ -1,0 +1,134 @@
+Atcoder-BC126-D
+
+# [ABC126D] Even Relation
+
+## 题面翻译
+
+一棵树有$N$个节点，编号为1至$N$。树的第$i$条边连接节点$u_i$和节点$v_i$，长度为$w_i$。你应将这棵树的所有节点染上黑色或白色（所有节点可以是同一种颜色），染色后的树应满足：
+
+对于任意两个相同颜色的节点，它们之间的距离是偶数。
+
+输出任意一组合法的解，第$i$行输出$i$号节点的颜色。输出0表示该节点是白色，输出1表示该节点为黑色。可以证明该问题至少有一组解。
+
+保证所有输入都是整数。
+
+$1\leq N\leq 10^5$
+
+$1\leq u_i < v_i\leq N$
+
+$1\leq w_i\leq 10^9$
+
+## 题目描述
+
+[problemUrl]: https://atcoder.jp/contests/abc126/tasks/abc126_d
+
+$ N $ 頂点の木があります。 この木の $ i $ 番目の辺は頂点 $ u_i $ と頂点 $ v_i $ を結んでおり、その長さは $ w_i $ です。 あなたは以下の条件を満たすように、この木の頂点を白と黒の $ 2 $ 色で塗り分けたいです (すべての頂点を同じ色で塗っても構いません)。
+
+- 同じ色に塗られた任意の $ 2 $ 頂点について、その距離が偶数である。
+
+条件を満たす塗り分け方を $ 1 $ つ見つけて出力してください。この問題の制約下では、そのような塗り分け方が必ず $ 1 $ つは存在することが証明できます。
+
+## 输入格式
+
+入力は以下の形式で標準入力から与えられる。
+
+> $ N $ $ u_1 $ $ v_1 $ $ w_1 $ $ u_2 $ $ v_2 $ $ w_2 $ $ . $ $ . $ $ . $ $ u_{N\ -\ 1} $ $ v_{N\ -\ 1} $ $ w_{N\ -\ 1} $
+
+## 输出格式
+
+題意の条件を満たすような頂点の塗り分け方を $ N $ 行に分けて出力せよ。 $ i $ 行目には、頂点 $ i $ を白く塗る場合は `0` を、黒く塗る場合は `1` を出力せよ。
+
+条件を満たす塗り分け方が複数存在する場合、どれを出力してもよい。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+3
+1 2 2
+2 3 1
+```
+
+### 样例输出 #1
+
+```
+0
+0
+1
+```
+
+## 样例 #2
+
+### 样例输入 #2
+
+```
+5
+2 5 2
+2 3 10
+1 3 8
+3 4 2
+```
+
+### 样例输出 #2
+
+```
+1
+0
+1
+0
+1
+```
+
+## 提示
+
+### 制約
+
+- 入力は全て整数である。
+- $ 1\ \leq\ N\ \leq\ 10^5 $
+- $ 1\ \leq\ u_i\ <\ v_i\ \leq\ N $
+- $ 1\ \leq\ w_i\ \leq\ 10^9 $
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<double> vd;
+typedef vector<int> vi;
+typedef stack<double> sd;
+typedef stack<int> si;
+typedef queue<double> qd;
+typedef queue<int> qi;
+
+int n, u, v, w, color[100010], vis[100010], deg[100010];
+vi edgeto[100010], edgeval[100010];
+
+void dfs(int s) {
+  if (vis[s])
+    return;
+  vis[s] = 1;
+  for (int i = 0; i < deg[s]; i++)
+    if (!vis[edgeto[s][i]]) {
+      color[edgeto[s][i]] = (edgeval[s][i] % 2) ? 1 - color[s] : color[s];
+      dfs(edgeto[s][i]);
+    }
+  return;
+}
+
+int main() {
+  cin >> n;
+  for (int i = 0; i < n - 1; i++) {
+    cin >> u >> v >> w;
+    edgeto[u].push_back(v);
+    edgeto[v].push_back(u);
+    edgeval[u].push_back(w);
+    edgeval[v].push_back(w);
+    deg[u]++;
+    deg[v]++;
+  }
+  color[1] = 1;
+  dfs(1);
+  for (int i = 1; i <= n; i++)
+    cout << color[i] << "\n";
+  return 0;
+}

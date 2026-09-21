@@ -1,0 +1,87 @@
+Atcoder-ABC154-B
+
+# [ABC154B] I miss you...
+
+## 题面翻译
+
+给出一个字符串 $S$ ，请将 $S$ 中每一个字符都替换为 ```x```，然后输出。
+
+## 题目描述
+
+[problemUrl]: https://atcoder.jp/contests/abc154/tasks/abc154_b
+
+文字列 $ S $ が与えられます。$ S $ のすべての文字を `x` で置き換えて出力してください。
+
+## 输入格式
+
+入力は以下の形式で標準入力から与えられる。
+
+> $ S $
+
+## 输出格式
+
+$ S $ のすべての文字を `x` で置き換えて出力せよ。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+sardine
+```
+
+### 样例输出 #1
+
+```
+xxxxxxx
+```
+
+## 样例 #2
+
+### 样例输入 #2
+
+```
+xxxx
+```
+
+### 样例输出 #2
+
+```
+xxxx
+```
+
+## 样例 #3
+
+### 样例输入 #3
+
+```
+gone
+```
+
+### 样例输出 #3
+
+```
+xxxx
+```
+
+## 提示
+
+### 制約
+
+- $ S $ は英小文字のみからなる文字列
+- $ S $ の長さは $ 1 $ 以上 $ 100 $ 以下
+
+### Sample Explanation 1
+
+`sardine` のすべての文字を `x` で置き換えると `xxxxxxx` となります。
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    string x;cin>>x;
+    int a=x.length();
+    for(int i=0;i<a;i++)cout<<"x";
+    puts("");
+    return 0;
+}

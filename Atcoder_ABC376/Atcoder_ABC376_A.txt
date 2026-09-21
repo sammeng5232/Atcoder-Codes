@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, c, t, s = 1, curr;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n >> c;
+  cin >> curr;
+  for (int i = 1; i < n; i++) {
+    cin >> t;
+    if (t - curr >= c) {
+      s++;
+      curr = t;
+    }
+  }
+  cout << s << "\n";
+  return 0;
+}

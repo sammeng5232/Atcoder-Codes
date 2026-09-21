@@ -1,0 +1,215 @@
+Atcoder-BC367-B
+
+# [ABC367B] Cut .0
+
+## 题面翻译
+
+### 问题描述
+
+给出一个实数 \( X \)，精确到小数点后第三位。
+
+以满足下列条件的方式输出实数 \( X \)：
+
+- 对于小数部分，不要在末尾添加 `0`。
+- 不要在末尾添加不必要的小数点。
+
+### 输入格式
+
+输入以如下格式从标准输入给出：
+
+> \( X \)
+
+### 输出格式
+
+输出答案。
+
+### 约束条件
+
+- \( 0 \leq X < 100 \)
+- \( X \) 给出到小数点后第三位。
+
+### 示例解释 1
+
+`1.012` 可以按原样输出。
+
+### 示例解释 2
+
+不带末尾 `0` 输出 `12.340` 结果为 `12.34`。
+
+### 示例解释 3
+
+不带末尾 `0` 输出 `99.900` 结果为 `99.9`。
+
+### 示例解释 4
+
+不带末尾 `0` 或不必要的小数点输出 `0.000` 结果为 `0`。
+
+## 题目描述
+
+[problemUrl]: https://atcoder.jp/contests/abc367/tasks/abc367_b
+
+実数 $ X $ が小数点以下第 $ 3 $ 位まで与えられます。
+
+実数 $ X $ を以下の条件を満たすように出力してください。
+
+- 小数点以下の部分について、末尾に `0` を付けない
+- 末尾に過剰な小数点を付けない
+
+## 输入格式
+
+入力は以下の形式で標準入力から与えられる。
+
+> $ X $
+
+## 输出格式
+
+答えを出力せよ。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+1.012
+```
+
+### 样例输出 #1
+
+```
+1.012
+```
+
+## 样例 #2
+
+### 样例输入 #2
+
+```
+12.340
+```
+
+### 样例输出 #2
+
+```
+12.34
+```
+
+## 样例 #3
+
+### 样例输入 #3
+
+```
+99.900
+```
+
+### 样例输出 #3
+
+```
+99.9
+```
+
+## 样例 #4
+
+### 样例输入 #4
+
+```
+0.000
+```
+
+### 样例输出 #4
+
+```
+0
+```
+
+## 提示
+
+### 制約
+
+- $ 0\ \le\ X\ <\ 100 $
+- $ X $ は小数点以下第 $ 3 $ 位まで与えられる
+ 
+### Sample Explanation 1
+
+`1.012` はそのまま出力しても構いません。
+
+### Sample Explanation 2
+
+`12.340` を末尾に `0` を付けずに出力すると `12.34` となります。
+
+### Sample Explanation 3
+
+`99.900` を末尾に `0` を付けずに出力すると `99.9` となります。
+
+### Sample Explanation 4
+
+`0.000` を末尾に `0` や過剰な小数点を付けずに出力すると `0` となります。
+
+Code 1:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<double> vd;
+typedef vector<int> vi;
+typedef stack<double> sd;
+typedef stack<int> si;
+typedef queue<double> qd;
+typedef queue<int> qi;
+
+string s;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> s;
+  int a, b, c, d, e;
+  if (s[2] == '.') {
+    a = s[0] - '0';
+    b = s[1] - '0';
+    c = s[3] - '0';
+    d = s[4] - '0';
+    e = s[5] - '0';
+    cout << a << b;
+    if (e)
+      cout << "." << c << d << e << "\n";
+    else if (d)
+      cout << "." << c << d << "\n";
+    else if (c)
+      cout << "." << c << "\n";
+  } else {
+    b = s[0] - '0';
+    c = s[2] - '0';
+    d = s[3] - '0';
+    e = s[4] - '0';
+    cout << b;
+    if (e)
+      cout << "." << c << d << e << "\n";
+    else if (d)
+      cout << "." << c << d << "\n";
+    else if (c)
+      cout << "." << c << "\n";
+  }
+  return 0;
+}
+
+Code 2:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<double> vd;
+typedef vector<int> vi;
+typedef stack<double> sd;
+typedef stack<int> si;
+typedef queue<double> qd;
+typedef queue<int> qi;
+
+double s;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> s;
+  cout << s;
+  return 0;
+}

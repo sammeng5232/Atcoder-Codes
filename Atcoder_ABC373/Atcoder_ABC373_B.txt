@@ -1,0 +1,30 @@
+Atcoder-ABC373-B
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  string s;
+  cin >> s;
+  int pos[27];
+  int cnt = 0;
+  for (int i = 1; i < 26; i++)
+    pos[(int)(s[i]) - 64] = i;
+  for (int i = 1; i < 26; i++)
+    cnt += abs(pos[i] - pos[i + 1]);
+  cout << cnt << "\n";
+  return 0;
+}

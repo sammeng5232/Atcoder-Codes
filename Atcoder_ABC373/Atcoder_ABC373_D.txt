@@ -1,0 +1,53 @@
+Atcoder-ABC373-D
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, m;
+ll u, v, w;
+vector<pair<ll, ll>> out[200010];
+ll val[200010];
+bool vis[200010];
+
+void dfs(int x) {
+  if (vis[x])
+    return;
+  vis[x] = 1;
+  for (int j = 0; j < out[x].size(); j++) {
+    if (!vis[out[x][j].first]) {
+      val[out[x][j].first] = val[x] + out[x][j].second;
+      dfs(out[x][j].first);
+    }
+  }
+}
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n >> m;
+  for (int i = 1; i <= m; i++) {
+    cin >> u >> v >> w;
+    out[u].push_back(make_pair(v, w));
+    out[v].push_back(make_pair(u, -w));
+  }
+  for (int i = 2; i <= n; i++) {
+    if (!vis[i]) {
+      val[i] = 0;
+      dfs(i);
+    }
+  }
+  for (int i = 1; i <= n; i++)
+    cout << val[i] << " ";
+  return 0;
+}

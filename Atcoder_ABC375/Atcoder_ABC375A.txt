@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, c = 0;
+string s;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n >> s;
+  for (int i = 1; i < n - 1; i++)
+    if (s[i - 1] == '#' && s[i] == '.' && s[i + 1] == '#')
+      c++;
+  cout << c << "\n";
+  return 0;
+}

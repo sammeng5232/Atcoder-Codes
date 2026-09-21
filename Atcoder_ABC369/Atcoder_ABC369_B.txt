@@ -1,0 +1,274 @@
+Atcoder-ABC369-B
+
+# [ABC369B] Piano 3
+
+## 题面翻译
+
+### 题目描述
+
+高桥有一架钢琴，上面有 $100$ 个琴键排列成一排。从左数第 $i$ 个键记为第 $i$ 个键。
+
+他要一个接一个地按 $N$ 个键来演奏音乐。在按第 $i$ 次键时，他将按键 $A_i$，如果 $S_i =$ `L` 用左手，如果 $S_i =$ `R` 用右手。开始演奏前，他可以将双手放在他喜欢的任何键上，此时他的疲劳度为 $0$。
+
+在演奏过程中，如果他将一只手从 $x$ 键移动到 $y$ 键，疲劳度就会增加 $|y-x|$（反之，疲劳度不会因为移动手以外的原因而增加）。用手按某个键时，手必须放在该键上。
+
+
+求演奏结束时可能的最低疲劳度。
+
+### 规定
+
+* $1 \le N \le 100$
+
+* $1 \le A_i \le 100$
+
+* $N$ 和 $A_i$ 都是整数。
+
+* $S_i$ 为 `L` 或 `R`。
+
+### 输入
+
+输入内容由标准输入给出，格式如下：
+
+> $N$ $A_1$ $S_1$ $A_2$ $S_2$ $\dots$ $A_N$ $S_N$
+
+### 输出
+
+输出在表演结束时的最低疲劳度。
+
+### 样例解释 #1
+
+例如，可以按如下方式演奏：
+
+* 首先，将左手放在 $3$ 号键上，右手放在 $6$ 号键上。
+* 左手按 $3$ 号键。
+* 右手按 $6$ 号键。
+* 将左手从 $3$ 号键移至 $9$ 号键。疲劳度增加 $|9-3|=6$。
+* 右手从键 $6$ 移动到键 $1$。疲劳度增加 $|1-6|=5$。
+* 左手按 $9$ 号键。
+* 右手按 $1$ 号键。
+
+在这种情况下，表演结束时的疲劳度为 $6+5=11$，这是可能的最小值。
+
+## 题目描述
+
+[problemUrl]: https://atcoder.jp/contests/abc369/tasks/abc369_b
+
+高橋君は、横一列に並んだ $ 100 $ 個の鍵盤からなるピアノを持っています。 このピアノの左から $ i $ 個目の鍵盤のことを鍵盤 $ i $ と呼びます。
+
+高橋君は今から $ N $ 回にわたってこのピアノの鍵盤を一つずつ押すことでとある曲を演奏します。 $ i $ 回目に押す鍵盤は鍵盤 $ A_i $ であり、それを押す手は $ S_i= $ `L` のとき左手、$ S_i= $ `R` のとき右手です。
+
+演奏を始める前、高橋君は両手をそれぞれ好きな鍵盤の上に置くことができ、この時点での**疲労度**は $ 0 $ です。 演奏中、片方の手を鍵盤 $ x $ の上から鍵盤 $ y $ の上へと動かすと疲労度が $ |y-x| $ 増加します（逆に、手の移動以外で疲労度が増加することはありません）。 なお、ある手である鍵盤を押すためには、その手がその鍵盤の上に置かれている必要があります。
+
+演奏が終了した時点での疲労度は最小でいくつになるか求めてください。
+
+## 输入格式
+
+入力は以下の形式で標準入力から与えられる。
+
+> $ N $ $ A_1 $ $ S_1 $ $ A_2 $ $ S_2 $ $ \vdots $ $ A_N $ $ S_N $
+
+## 输出格式
+
+演奏が終了した時点での疲労度の最小値を出力せよ。
+
+## 样例 #1
+
+### 样例输入 #1
+
+```
+4
+3 L
+6 R
+9 L
+1 R
+```
+
+### 样例输出 #1
+
+```
+11
+```
+
+## 样例 #2
+
+### 样例输入 #2
+
+```
+3
+2 L
+2 L
+100 L
+```
+
+### 样例输出 #2
+
+```
+98
+```
+
+## 样例 #3
+
+### 样例输入 #3
+
+```
+8
+22 L
+75 L
+26 R
+45 R
+72 R
+81 R
+47 L
+29 R
+```
+
+### 样例输出 #3
+
+```
+188
+```
+
+## 提示
+
+### 制約
+
+- $ 1\leq\ N\ \leq\ 100 $
+- $ 1\leq\ A_i\ \leq\ 100 $
+- $ N,A_i $ は整数
+- $ S_i $ は `L` または `R`
+ 
+### Sample Explanation 1
+
+例えば以下のように演奏することができます。 - 最初、左手を鍵盤 $ 3 $ の上に、右手を鍵盤 $ 6 $ の上に置いておく。 - 左手で鍵盤 $ 3 $ を押す。 - 右手で鍵盤 $ 6 $ を押す。 - 左手を鍵盤 $ 3 $ の上から鍵盤 $ 9 $ の上へと動かす。疲労度が $ |9-3|=6 $ 増加する。 - 右手を鍵盤 $ 6 $ の上から鍵盤 $ 1 $ の上へと動かす。疲労度が $ |1-6|=5 $ 増加する。 - 左手で鍵盤 $ 9 $ を押す。 - 右手で鍵盤 $ 1 $ を押す。 このとき、演奏が終了した時点での疲労度は $ 6+5=11 $ であり、これが最小です。
+
+Code 1:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, l[110], r[110], a, lcnt, rcnt, ans;
+char c;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> a >> c;
+    if (c == 'L') {
+      l[lcnt] = a;
+      lcnt++;
+    } else {
+      r[rcnt] = a;
+      rcnt++;
+    }
+  }
+  for (int i = 1; i < lcnt; i++)
+    ans += abs(l[i] - l[i - 1]);
+  for (int i = 1; i < rcnt; i++)
+    ans += abs(r[i] - r[i - 1]);
+  cout << ans << "\n";
+  return 0;
+}
+
+Code 2:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, l[110], r[110], a, lcnt, rcnt, ans;
+char c;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> a >> c;
+    (c == 'L') ? (l[lcnt] = a, lcnt++) : (r[rcnt] = a, rcnt++);
+  }
+  for (int i = 1; i < lcnt; i++)
+    ans += abs(l[i] - l[i - 1]);
+  for (int i = 1; i < rcnt; i++)
+    ans += abs(r[i] - r[i - 1]);
+  cout << ans << "\n";
+  return 0;
+}
+
+Code 3:
+// LUOGU_RID: 175578117
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, a, lcnt, rcnt, currl, currr, ans;
+char c;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> a >> c;
+    if (c == 'L')
+      lcnt ? (ans += abs(a - currl), currl = a, lcnt++) : (currl = a, lcnt++);
+    else
+      rcnt ? (ans += abs(a - currr), currr = a, rcnt++) : (currr = a, rcnt++);
+  }
+  cout << ans << "\n";
+  return 0;
+}
+
+Code 4:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, a, cnt[2], curr[2], ans;
+char c;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n;
+  while (n--) {
+    cin >> a >> c;
+    cnt[c == 'L']
+        ? (ans += abs(a - curr[c == 'L']), curr[c == 'L'] = a, cnt[c == 'L']++)
+        : (curr[c == 'L'] = a, cnt[c == 'L']++);
+  }
+  cout << ans << "\n";
+  return 0;
+}

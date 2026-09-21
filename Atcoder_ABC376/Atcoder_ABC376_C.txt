@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<ll> vd;
+typedef vector<int> vi;
+typedef stack<ll> sd;
+typedef stack<int> si;
+typedef queue<ll> qd;
+typedef queue<int> qi;
+typedef map<int, int> mii;
+
+int n, a[200010], b[200010], z[200010], fail;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cin >> n;
+  for (int i = 1; i <= n; i++)
+    cin >> a[i];
+  for (int i = 1; i <= n - 1; i++)
+    cin >> b[i];
+  sort(a + 1, a + 1 + n);
+  sort(b + 1, b + n);
+  for (int i = n - 1; i >= 1; i--) {
+    if (!z[i + 1]) {
+      if (b[i] >= a[i + 1])
+        z[i + 1] = 1;
+      else {
+        if (!fail) {
+          fail = a[i + 1];
+          if (b[i] >= a[i])
+            z[i] = 1;
+          else {
+            cout << "-1\n";
+            return 0;
+          }
+        } else {
+          cout << "-1\n";
+          return 0;
+        }
+      }
+    } else {
+      if (b[i] >= a[i])
+        z[i] = 1;
+      else {
+        cout << "-1\n";
+        return 0;
+      }
+    }
+  }
+  if (fail)
+    cout << fail << "\n";
+  else
+    cout << a[1] << "\n";
+  return 0;
+}
